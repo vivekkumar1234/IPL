@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <meta name="description" content="Hello, This is test gaming website.">
+    <meta name="viewport" content="width = device-width, minimum-scale = 1.0 , initial-scale = 1,user-scalable=yes">
+
+  </head>
+  <body>
+          <!-- The core Firebase JS SDK is always required and must be listed first -->
+          <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-app.js"></script>
+          <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-auth.js"></script>
+          <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-database.js"></script>
+
+          <!-- TODO: Add SDKs for Firebase products that you want to use
+           https://firebase.google.com/docs/web/setup#available-libraries -->
+          <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-analytics.js"></script>
+
+          <script>
+            // Your web app's Firebase configuration
+            var firebaseConfig = {
+            apiKey: "AIzaSyD5Q11SFWdWxel8DSR8Drs7M2e-KE-GfaY",
+            authDomain: "gaming-e803c.firebaseapp.com",
+            databaseURL: "https://gaming-e803c.firebaseio.com",
+            projectId: "gaming-e803c",
+            storageBucket: "gaming-e803c.appspot.com",
+            messagingSenderId: "626465373805",
+            appId: "1:626465373805:web:1b8ccb6d11bba5da6d4964",
+            measurementId: "G-7T6T3JPX2B"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+            firebase.analytics();
+
+            var userDetails = firebase.database().ref("user");
+            function saveUser(){
+                userDetails.set({
+                name: document.getElementById("userName").value,
+                password : document.getElementById("password").value
+              });
+            }
+          </script>
+          <script type="text/javascript" src="userRegistration.js "></script>
+                <input style="display:block" type = "text" placeholder="User" id="userName"/>
+                <input style="display:block" type = "password" placeholder="password" id="password"/>
+                <button id="saveUser" onclick="saveUser()">Submit</button>
+
+  </body>
+</html>
