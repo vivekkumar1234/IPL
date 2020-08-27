@@ -11,14 +11,28 @@
      https://firebase.google.com/docs/web/setup#available-libraries -->
     <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-analytics.js"></script>
 
-    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   </head>
   <body>
         <h1>Welcome to Prediction Game</h1>
-        <div id="firebaseui-auth-container"></div>
-        <div id="loader">Loading...</div>
+
+        <div class="loginContainer">
+          <input type="email" placeholder="Email" id="txtEmail">
+          <input type="password" placeholder="Password" id="txtPassword">
+
+          <button id="btnLogin" class="btn btn-action" onclick="signIn()">
+            Log In
+          </button>
+
+          <button id="btnFgtPassword" class="btn btn-secondary" onclick="fgtPassword()">
+            Forgot Password
+          </button>
+
+        </div>
+        <script>
+        </script>
         <script type="text/javascript" src="firebase.js"></script>
         <script type="text/javascript" src="login.js"></script>
+
   </body>
 </html>

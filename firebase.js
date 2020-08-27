@@ -13,4 +13,17 @@ var app_firebase = {};
             };
             firebase.initializeApp(firebaseConfig);
             app_firebase = firebase;
+
+                        firebase.auth().onAuthStateChanged(firebaseUser => {
+                          if(firebaseUser){
+                            console.log("user email :"+firebaseUser.email);
+                            console.log("uid :"+firebaseUser.uid);
+                        //    window.location = "main.html";
+                            console.log(firebaseUser + "logged in.");
+                          }else{
+                        //    window.location = "index.html";
+                            console.log("Not logged in");
+                          }
+                        })
+
 })()

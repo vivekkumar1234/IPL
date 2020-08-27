@@ -1,38 +1,45 @@
-(function(){
-  var ui = new firebaseui.auth.AuthUI(firebase.auth());
 
-  var uiConfig = {
-    callbacks: {
-      signInSuccessWithAuthResult: function(authResult, redirectUrl) {
-        // User successfully signed in.
-        // Return type determines whether we continue the redirect automatically
-        // or whether we leave that to developer to handle.
-        return true;
-      },
-      uiShown: function() {
-        // The widget is rendered.
-        // Hide the loader.
-        document.getElementById('loader').style.display = 'none';
-      }
-    },
-    // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
-    signInFlow: 'popup',
-    signInSuccessUrl: 'main.html',
-    signInOptions: [
-      // Leave the lines as is for the providers you want to offer your users.
-    /*  firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-      firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-      firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-      firebase.auth.GithubAuthProvider.PROVIDER_ID,
-      firebase.auth.PhoneAuthProvider.PROVIDER_ID,*/
+  var firebase = app_firebase;
 
-      firebase.auth.EmailAuthProvider.PROVIDER_ID,
-      firebase.auth.EmailAuthProvider.EMAIL_LINK_SIGN_IN_METHOD
-    ],
-    // Terms of service url.
-    tosUrl: 'main.html',
-    // Privacy policy url.
-    privacyPolicyUrl: 'main.html'
-  };
-  ui.start('#firebaseui-auth-container', uiConfig);
-})()
+  const txtEmail = document.getElementById("txtEmail");
+  const txtPassword = document.getElementById("txtPassword");
+  const btnLogin = document.getElementById("btnLogin");
+  const btnSignUp = document.getElementById("btnSignUp");
+  const btnLogout = document.getElementById("btnLogout");
+
+  //    window.onLoad() = function(){
+        function signIn() {
+          const email = txtEmail.value;
+          const password = txtPassword.value;
+
+          const auth = firebase.auth();
+
+          const promise = auth.signInWithEmailAndPassword(email, password);
+
+          promise.then(result =>{window.location = "main.html";},
+                  e => console.log(e.message));
+        }
+
+        /*function signUp() {
+          const email = txtEmail.value;
+          const password = txtPassword.value;
+          const auth = firebase.auth();
+          const promise = auth.createUserWithEmailAndPassword(email, password);
+          promise.then(result =>{console.log("successful");
+                                  window.location.replace = "main.html";},
+                  e => console.log(e.message));
+        }*/
+
+        function fgtPassword(){
+          window.location = "fgtPassword.html";
+        }
+
+        function signVerificationEmail(){
+          const emailAddress = document.getElementById("passwordResetEmail").value;
+          var auth = firebase.auth();
+          auth.sendPasswordResetEmail(emailAddress).then(function() {
+            document.innerHTML ="Verification email sent to your email "+emailAddress;
+          }).catch(function(error) {
+            console.log("error sending email for password reset : "+error);
+          });
+        }
